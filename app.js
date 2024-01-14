@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
+require('dotenv').config();
 
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}));
@@ -10,7 +11,10 @@ app.use(express.static("public"));
 
 app.set("view engine","ejs");
 
-mongoose.connect("mongodb+srv://admin-avnish:mongoAdmin@cluster0.sywem6d.mongodb.net/UserData");
+console.log('Loaded environment variables:', process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI);
+
+
 
 const signUpSchema = new mongoose.Schema({
     name:String,
