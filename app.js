@@ -11,9 +11,7 @@ app.use(express.static("public"));
 
 app.set("view engine","ejs");
 
-console.log('Loaded environment variables:', process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI);
-
 
 
 const signUpSchema = new mongoose.Schema({
